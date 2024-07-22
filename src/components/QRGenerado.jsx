@@ -6,13 +6,11 @@ import { useCompartir } from '../hooks/useCompartir';
 
 import imagen from '../assets/logo-qr-generator.svg';
 import iconoLink from '../assets/link-svgrepo-com.svg';
-import iconoCompartir from '../assets/share-svgrepo-com.svg';
 import iconoDescargar from '../assets/download-minimalistic-svgrepo-com.svg';
 
 export const QRGenerado = () => {
     const { canvasRef, handleDownload } = useGenerarQR();
-    const { compartir, renderNotificacion, esMobile } = useCompartir(canvasRef);
-    console.log(esMobile);
+    const { compartir, renderNotificacion } = useCompartir();
 
     return (
         <div className='crearQR__contenedor'>
@@ -31,7 +29,7 @@ export const QRGenerado = () => {
 
                     <button onClick={compartir}>
                         Compartir
-                        <img src={esMobile ? iconoCompartir : iconoLink} className='link' />
+                        <img src={iconoLink} className='link' />
                     </button>
                 </div>
 
@@ -39,7 +37,6 @@ export const QRGenerado = () => {
             </div>
 
             {renderNotificacion()}
-             
         </div>
     );
 };

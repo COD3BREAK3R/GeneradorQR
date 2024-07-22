@@ -1,54 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import iconoCheck from '../assets/check-svgrepo-com.svg';
 import iconoError from '../assets/error-svgrepo-com.svg';
 
 
-export const useCompartir = (canvasRef) => {
+export const useCompartir = () => {
     const [copiado, setCopiado] = useState(false);
     const [errorCopia, setErrorCopia] = useState(false);
-    const [esMobile, setEsMobile] = useState(false)
 
     const urlActual = location.href;
 
-    useEffect(() => {
-        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-        isMobile ? setEsMobile(true) : setEsMobile(false)
-    }, [])
-
-
     const compartir = async () => {
-
-        if (navigator.share && esMobile) {
-            try {
-                const canvas = canvasRef.current;
-
-                if (!canvas) {
-                    throw new Error('Canvas no disponible');
-                }
-
-                canvas.toBlob(async (blob) => {
-                    const file = new File([blob], 'qr-code.png', { type: 'image/png' });
-
-                    await navigator.share({
-                        title: 'Compartir QR',
-                        text: 'Mira este QR que generé',
-                        files: [file],
-                    });
-                }, 'image/png');
-
-            } catch (error) {
-                console.error('Error al compartir:', error);
-                copiarAlPortapapeles(urlActual);
-            }
-        } else {
-            copiarAlPortapapeles(urlActual);
-        }
-    };
-
-    const copiarAlPortapapeles = async (url) => {
         try {
-            await navigator.clipboard.writeText(url);
+            await navigator.clipboard.writeText(urlActual);
             setCopiado(true);
 
             setTimeout(() => {
@@ -77,7 +40,6 @@ export const useCompartir = (canvasRef) => {
 
     return {
         compartir,
-        renderNotificacion,
-        esMobile
+        renderNotificacion
     };
 };
