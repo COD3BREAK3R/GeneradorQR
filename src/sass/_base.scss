@@ -1,0 +1,35 @@
+/*=============================================
+=                   MARK:Colores                   
+=============================================*/
+
+$blanco   : #F2F5F9;
+$azul     : #3662E3;
+$azulClaro: #4e80ee33;
+$fondo    : #111729;
+$fondo2   : #364153;
+
+/*============  End of Colores  =============*/
+
+/*=============================================
+=                   MARK:General                   
+=============================================*/
+
+* {
+    margin                     : 0;
+    padding                    : 0;
+    box-sizing                 : border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family                : "Outfit", sans-serif;
+    font-optical-sizing        : auto;
+    font-style                 : normal;
+}
+
+body {
+    color           : $blanco;
+    background-color: $fondo;
+
+}
+
+$dirRaiz: '../';
+
+/*============  End of General  =============*/

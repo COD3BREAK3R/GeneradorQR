@@ -1,0 +1,181 @@
+.crearQR__contenedor {
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items    : center;
+    height         : 100dvh;
+    margin         : 20px;
+    overflow       : hidden;
+
+    .notificacion {
+        position        : fixed;
+        bottom          : 20px;
+        background-color: #4e81ee;
+        width           : 300px;
+        padding         : 20px;
+        border-radius   : 20px;
+        text-align      : center;
+        opacity         : 0;
+        transform       : translateX(100%);
+        animation       : aparecer 1s forwards, desaparecer 1s 2s forwards;
+        box-shadow      : 0px 0px 35px rgba(0, 0, 0, 0.5);
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+        gap             : 10px;
+        cursor          : pointer;
+
+        &.error {
+            background-color: #9c3333;
+        }
+
+        img {
+            width: 1.1em;
+        }
+    }
+
+    @keyframes aparecer {
+        0% {
+            opacity  : 0;
+            transform: translateX(100%);
+        }
+
+        100% {
+            opacity  : 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes desaparecer {
+        0% {
+            opacity  : 1;
+            transform: translateX(0);
+        }
+
+        100% {
+            opacity  : 0;
+            transform: translateX(-100%);
+        }
+    }
+}
+
+.QR {
+    background-color: #efeff0;
+    padding         : clamp(10px, 10%, 30px);
+    border-radius   : 20px;
+    width           : 80vw;
+    max-width       : 300px;
+    height          : auto;
+    position        : relative;
+    z-index         : 1;
+
+    &__ref {
+        display        : flex;
+        justify-content: center;
+        align-items    : center;
+        width          : 100%;
+    }
+
+    &__fondo {
+        position        : absolute;
+        background-color: $azulClaro;
+        width           : 95vw;
+        max-width       : 350px;
+        height          : 95vw;
+        max-height      : 350px;
+        border-radius   : 50%;
+        z-index         : 0;
+    }
+
+    &__imagen {
+        position: absolute;
+        top     : 25px;
+        left    : 25px;
+    }
+
+    &__botones {
+        display       : flex;
+        flex-direction: column;
+        align-items   : center;
+        position      : absolute;
+        width         : 100%;
+        margin-top    : clamp(0px, 120vw, 500px);
+
+        button {
+            background-color: $azul;
+            border          : none;
+            display         : flex;
+            align-items     : center;
+            gap             : 10px;
+            padding         : 20px;
+            width           : 200px;
+            justify-content : center;
+            font-size       : 1em;
+            color           : $blanco;
+            border-radius   : 15px;
+            cursor          : pointer;
+            transition      : background-color 0.3s;
+
+            &:hover {
+                transition      : background-color 0.3s;
+                background-color: darken($azul, 15);
+            }
+        }
+
+        .descargar,
+        .link {
+            width: 1.2em;
+        }
+
+        .back {
+            text-decoration: none;
+            color          : lighten($azul, 20);
+            margin-bottom  : 10px;
+            margin-top     : 15px;
+            font-size      : 1.1em;
+            transition     : color 0.3s;
+            display        : flex;
+            gap            : 10px;
+
+            &:hover {
+                transition: color 0.3s;
+                color     : lighten($azul, 10);
+
+            }
+        }
+
+        &__principales {
+            display: flex;
+            gap    : 20px;
+        }
+
+    }
+}
+
+/*=============================================
+=                 MARK:Responsive                   
+=============================================*/
+
+@media(width <=450px) {
+
+    .QR__botones {
+        flex-direction: column;
+        margin-top    : clamp(0px, 250vw, 570px);
+        width         : 100%;
+        align-items   : center;
+
+        button {
+            width: 90%;
+        }
+
+    }
+
+    .QR__botones__principales {
+        display       : flex;
+        align-items   : center;
+        flex-direction: column;
+        width         : 100%;
+    }
+}
+
+/*============  End of Responsive  =============*/
