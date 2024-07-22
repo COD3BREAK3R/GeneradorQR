@@ -1,3 +1,8 @@
 {
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
-}
+    "redirects": [
+      {
+        "source": "/(.*)",
+        "destination": "https://generador-qr-luisenriqueferrer.vercel.app"
+      }
+    ]
+  }
