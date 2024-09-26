@@ -10,7 +10,8 @@ export const useValidarURL = () => {
     const navigate = useNavigate();
 
     const validarURL = () => {
-        const regexValidarURL = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+        const regexValidarURL = /^(https?:\/\/)?(www\.)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,}(:[0-9]{1,5})?(\/.*)?$/;
+
 
         if (!textoInput.match(regexValidarURL)) {
             setError(true)
